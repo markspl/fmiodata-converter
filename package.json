@@ -4,8 +4,15 @@
   "description": "Fetches Finnish Meteorological Institute's Open Data (XML) and converts it to JSON",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev":"nodemon index.js"
   },
   "author": "Markus Palomäki",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
 }
