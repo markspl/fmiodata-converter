@@ -13,6 +13,28 @@ The data is **forecast data**, which is updated every 6 hours. It shows, for exa
 
 - - -
 
+### How-To
+
+#### Run REST API *(Work-in-Progress: does not show any data, yet)*
+
+1. Clone/download repository
+2. Install required npm packages `npm i`
+3. Start REST API `npm run start`
+    - For devs, `npm run dev`
+4. `localhost:8080`
+    - `/weather/`
+    - `/weather/:location`
+
+#### Run data fetcher and cleaner alone
+
+1. Clone/download repository
+2. Go to the folder `./utils/`
+3. Run `node weather.js <location>`
+    - For example `node weather.js Jyväskylä`
+    - Default location `Helsinki`.
+
+---
+
 ### `WeatherSymbol3` parameters
 
 The data also includes `WeatherSymbol3` parameters, which is described in [fmidev's opendata-resources](https://github.com/fmidev/opendata-resources/)
