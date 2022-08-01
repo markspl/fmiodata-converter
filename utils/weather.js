@@ -58,7 +58,7 @@ const getForecast = async function (location = "Helsinki") {
     const cleaned = await cleanJSON(location, result.data);
 
     // Result
-    console.log(JSON.stringify(cleaned));
+    return cleaned;
 }
 
 /**
@@ -104,5 +104,14 @@ const cleanJSON = async (location, data) => {
     return (cleanedData);
 }
 
-// If file is run alone without index.js
-getForecast();
+async function runOnTerminal(location = "Helsinki") {
+    try {
+        let result = await getForecast(location);
+        console.log(JSON.stringify(result));
+    } catch (e) {
+        console.log(e.code)
+    }
+}
+
+// For running the tool using command line arguments
+runOnTerminal(process.argv[2]);
