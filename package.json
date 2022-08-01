@@ -1,5 +1,5 @@
 {
-  "name": "fmidata-converter",
+  "name": "fmiodata-converter",
   "version": "0.0.1",
   "description": "Fetches Finnish Meteorological Institute's Open Data (XML) and converts it to JSON",
   "main": "index.js",

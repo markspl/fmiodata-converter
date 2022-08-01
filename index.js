@@ -1,5 +1,5 @@
 /**
- * FMIDATA Converter - Fetch and convert XML data to JSON
+ * FMIODATA Converter - Fetch and convert XML data to JSON
  * Author: Markus Palomäki (github/markspl)
  */
 
