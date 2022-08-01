@@ -22,8 +22,9 @@ const axios = require("axios");
 const getLabels = require("./labels.js").getLabels;
 
 // Dev
-const fs = require("fs");
-const testXML = fs.readFileSync("./test/weather-input.xml", "utf-8");
+// For testing with a test file
+// const fs = require("fs");
+// const testXML = fs.readFileSync("./weather-input.xml", "utf-8");
 
 /**
  * Fetch location's forecast data from `opendata.fmi.fi`
@@ -31,11 +32,11 @@ const testXML = fs.readFileSync("./test/weather-input.xml", "utf-8");
  */
 const getForecast = async function (location = "Helsinki") {
     // Construct request address
-    //const endpoint = "https://opendata.fmi.fi/wfs?";
-    //const request = `request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::timevaluepair&place=${location}`;
-    //const address = endpoint + request;
+    const endpoint = "https://opendata.fmi.fi/wfs?";
+    const request = `request=getFeature&storedquery_id=fmi::forecast::hirlam::surface::point::timevaluepair&place=${location}`;
+    const address = endpoint + request;
 
-    //const req = await axios.get(address);
+    const req = await axios.get(address);
 
     // Parse XML to JSON using xml2js
     // ignoreAttrs = ignore all XML attributes and only create text nodes
@@ -46,14 +47,12 @@ const getForecast = async function (location = "Helsinki") {
     });
     let result = {};
 
-    //const convert = await parser.parseStringPromise(req.data, (err, data) => {
-    parser.parseString(testXML, (err, data) => {
+    parser.parseString(req.data, (err, data) => {
         result.err = err;
         result.data = data;
     });
 
     // At this point, XML converted to JSON (raw text without cleaning)
-    // console.log(JSON.stringify(result.data));
 
     // Clean raw JSON
     const cleaned = await cleanJSON(location, result.data);
@@ -71,7 +70,7 @@ const cleanJSON = async (location, data) => {
 
     const collection = data["wfs:FeatureCollection"]["wfs:member"];
 
-    cleanedData.location = location;
+    cleanedData.place = location;
     cleanedData.measurements = {};
 
     let measurementData = ["", "", ""];
@@ -105,4 +104,5 @@ const cleanJSON = async (location, data) => {
     return (cleanedData);
 }
 
+// If file is run alone without index.js
 getForecast();

@@ -9,7 +9,7 @@
  * Set information based on the type of measurement
  * @param {string} measurement 
  * @param {array} data 
- * @returns 
+ * @returns data
  */
 const getLabels = (measurement, data) => {
     switch(measurement){
