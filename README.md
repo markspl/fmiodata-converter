@@ -338,5 +338,6 @@ ID WEATHER
 - - -
 
 ## To-Do
+- Show fetched and cleaned data on the api
 - Change from HIRLAM model to more accurate HARMONIE (MEPS)
 - API for fetching current weather
