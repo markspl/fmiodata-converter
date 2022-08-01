@@ -5,14 +5,19 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev":"nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "author": "Markus Palomäki",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.1"
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "nodemonConfig": {
+    "ignore": [ "*.json" ]
   }
 }
