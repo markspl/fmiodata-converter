@@ -5,6 +5,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 const PORT = process.env.PORT || 8080;
 
@@ -13,17 +14,27 @@ app.use(bodyParser.json());
 
 // Front page
 const getFrontpage = (req, res) => {
-    res.send("Front page");
+    res.sendFile(path.join(__dirname, "index.html"));
 };
 
 // Get weather
-const getWeather = (req, res) => {
-    res.send("wip");
+const getWeather = async (req, res) => {
+    const location = req.params.location;
+    res.send(`Location: ${location}<br><br>WIP`);
 };
 
 // All available sites
 app.get("/", getFrontpage);
-app.get("/weather", getWeather);
+app.get("/weather", (req, res) => {
+    res.send("Weather forecast API");
+})
+app.get("/weather/:location", getWeather);
+
+// Show README correctly
+app.use("/README.md", express.static(__dirname + "/README.md"));
+app.use("/images/", express.static(__dirname + "/images/"));
+
+// Not found fallback
 app.get("*", (req, res) => {
     res.status(404).send("Not found");
 });
